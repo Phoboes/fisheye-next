@@ -7,7 +7,6 @@ const Map = dynamic(() => import("./Map/Map"), { ssr: false });
 const Index = (props) => {
   return (
     <>
-      <h2>Index</h2>
       <Map divesites={props.divesites} />
     </>
   );

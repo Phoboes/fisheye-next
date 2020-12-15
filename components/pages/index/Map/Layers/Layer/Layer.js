@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import L from "leaflet";
+import L, { featureGroup, map } from "leaflet";
 import leafletDraw from "leaflet-draw";
 import * as toolbarMethod from "./ToolbarControls/ToolbarControls";
 import { renderToString } from "react-dom/server";
@@ -11,52 +11,22 @@ const Layer = (props) => {
   let polygoncontent = renderToString(<DiveSiteInfo site={props.site} />);
   polygon.bindPopup(polygoncontent);
 
-  // The map layer in which all the rest is stored for THIS item
-  const [featureGroup, setFeatureGroup] = useState(null);
-
-  if (featureGroup === null) {
-    let newFeatureGroup = new L.FeatureGroup();
-    props.map.addLayer(newFeatureGroup);
-    setFeatureGroup(newFeatureGroup);
-  }
+  const [editMode, setEditMode] = useState(false);
+  const [siteData, setSiteData] = useState(null);
 
   useEffect(() => {
-    featureGroup.addLayer(polygon);
+    props.featureGroup.addLayer(polygon);
+    setSiteData({ ...props.site });
   }, []);
 
-  const [editState, toggleEditState] = useState(false);
-  const [toolbar, setToolbar] = useState(null);
-  const [polygonData, setPolygonData] = useState({ ...props.site });
-
-  let drawControl = null;
-
-  // Toolbar display
-  if (editState && toolbar === null) {
-    drawControl = new L.Control.Draw({
-      draw: {
-        polygon: false,
-        polyline: false,
-        marker: false,
-        rectangle: false,
-        marker: false,
-        circle: false,
-        circlemarker: false,
-      },
-      edit: {
-        featureGroup: featureGroup,
-      },
-    });
-    props.map.addControl(drawControl);
-    setToolbar(drawControl);
-    console.log(props.map);
-    debugger;
-    // polygonDisplayHandler(toolbar, false);
-    console.log("The toolbar should be set here");
-    console.log("State at time of render:" + editState);
-  } else if (toolbar !== null && !editState) {
-    console.log("The toolbar is unset here.");
-    toolbar.remove();
-    setToolbar(null);
+  function toolbarToggleHandler() {
+    let toolbar = null;
+    if (state.editMode === true) {
+      props.map.addControl(props.toolbar);
+    } else {
+      props.map.removeControl(props.toolbar);
+    }
+    return toolbar;
   }
 
   // Toolbar event listeners
@@ -78,21 +48,14 @@ const Layer = (props) => {
   });
 
   polygon.on("click", (e) => {
-    // polygonDisplayHandler(polygon, editState);
-    // console.log("Click");
-    console.log(toolbar !== null ? "Toolbar exists" : "Toolbar is null");
-    console.log("State at time of click:" + editState);
-    toggleEditState(!editState);
+    // console.log("Clicked!");
+    // console.log(props.featureGroup);
+    setEditMode(!editMode);
   });
 
-  function polygonDisplayHandler(polygon, display = true) {
-    if (!display) {
-      featureGroup.removeLayer(polygon);
-    } else {
-      featureGroup.addLayer(polygon);
-    }
-  }
-  console.log(toolbar);
+  // toolbarToggleHandler();
+
+  console.log(editMode);
   return null;
 };
 
