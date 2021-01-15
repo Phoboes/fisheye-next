@@ -14,7 +14,9 @@ function Home(divesites) {
 }
 
 Home.getInitialProps = async ({ req }) => {
-  const baseUrl = req ? `${req.protocol}://${req.get("Host")}` : "";
+  const protocol =
+    req.headers.host.indexOf("local") !== -1 ? "http://" : "https://";
+  const baseUrl = req ? `${protocol}${req.headers.host}` : "";
   const res = await fetch(`${baseUrl}/api/divesites`);
   const json = await res.json();
   return { divesites: json };

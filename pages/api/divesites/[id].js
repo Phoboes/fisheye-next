@@ -27,9 +27,8 @@ export default async (req, res) => {
       },
       (err, result) => {
         debugger;
+        res.send(JSON.stringify({ Message: "That was a post!" }));
       },
     );
-
-    res.send(JSON.stringify({ Message: "That was a post!" }));
   }
 };
