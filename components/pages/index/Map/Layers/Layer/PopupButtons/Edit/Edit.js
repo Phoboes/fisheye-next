@@ -1,8 +1,9 @@
 import React from "react";
 
 const Edit = (props) => {
-  const clickHandler = () => {
-    props.editHandler();
+  const clickHandler = (e) => {
+    props.editHandler(e);
+    console.log(props.polygon);
   };
 
   return (
