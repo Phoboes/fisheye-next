@@ -13,8 +13,9 @@ function Home(divesites) {
   );
 }
 
-Home.getInitialProps = async (ctx) => {
-  const res = await fetch(`${process.env.BASE_URL}/api/divesites`);
+Home.getInitialProps = async ({ req }) => {
+  const baseUrl = req ? `${req.protocol}://${req.get("Host")}` : "";
+  const res = await fetch(`${baseUrl}/api/divesites`);
   const json = await res.json();
   return { divesites: json };
 };
