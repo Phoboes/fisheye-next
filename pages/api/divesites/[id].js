@@ -26,8 +26,13 @@ export default async (req, res) => {
         boundaryPoints: data.boundaryPoints,
       },
       (err, result) => {
-        debugger;
-        res.send(JSON.stringify({ Message: "That was a post!" }));
+        // debugger;
+        if (err) {
+          console.log(err);
+          res.send(JSON.stringify({ Message: "Sorry, something went wrong!" }));
+          return;
+        }
+        res.send(JSON.stringify({ Message: "Dive site has been submitted." }));
       },
     );
   }

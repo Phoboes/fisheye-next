@@ -79,18 +79,18 @@ const Layer = (props) => {
   }
 
   if (map !== null) {
-    map.on("draw:editstart", (e) => {
-      toolbarMethod.editStart(props.map, polygon, e, props.site);
-    });
-    map.on("draw:editstop", (e) => {
-      toolbarMethod.editStop(props.map, polygon, e, props.site);
-    });
-    map.on("draw:created", (e) => {
-      toolbarMethod.shapeCreated(props.map, polygon, e);
-    });
-    map.on("draw:drawstart", (e) => {
-      toolbarMethod.drawStart(props.map, polygon, e);
-    });
+    // map.on("draw:editstart", (e) => {
+    //   toolbarMethod.editStart(props.map, polygon, e, props.site);
+    // });
+    // map.on("draw:editstop", (e) => {
+    //   toolbarMethod.editStop(props.map, polygon, e, props.site);
+    // });
+    // map.on("draw:created", (e) => {
+    //   toolbarMethod.shapeCreated(props.map, polygon, e);
+    // });
+    // map.on("draw:drawstart", (e) => {
+    //   toolbarMethod.drawStart(props.map, polygon, e);
+    // });
     map.on("draw:drawstop", (e) => {
       toolbarMethod.drawStop(props.map, polygon, e);
     });

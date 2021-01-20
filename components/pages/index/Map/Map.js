@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-// import L from "leaflet";
+import L from "leaflet";
 import styles from "./Map.module.css";
 import Layers from "./Layers/Layers";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { MapContainer, MapControl } from "react-leaflet";
 import TileLayers from "./TileLayers/TileLayers";
+import NewSiteToolbar from "./CustomControls/NewToolbar/NewToolbar";
 
 const MapWrapper = (props) => {
   const [currentPolygon, setCurrentPolygon] = useState(null);
 
-  const setPolygonStateHandler = (polygon = null) => {
+  const setPolygonStateHandler = async (polygon = "null") => {
     setCurrentPolygon(polygon);
+    return polygon;
   };
 
   return (
@@ -19,6 +21,10 @@ const MapWrapper = (props) => {
         center={[-34.040441, 151.1988752]}
         zoom={13}
         className={styles["leaflet-container"]}>
+        <NewSiteToolbar
+          currentlyEditing={currentPolygon}
+          setCurrentPolygon={setPolygonStateHandler}
+        />
         <TileLayers />
         <Layers
           divesites={props.divesites}

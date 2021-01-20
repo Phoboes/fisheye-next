@@ -70,12 +70,13 @@ export function drawStop(map, shape, e) {
 }
 
 // Triggered once a shape is completed
-export function shapeCreated(map, shape, e) {
+export function shapeCreated(map, featureGroup, e) {
   console.log("A new shape has been added.");
-  console.log("From layers.");
-
-  console.log(shape);
+  console.log("From NEW TOOLBAR.");
+  console.log(map);
+  map.addLayer(e.layer);
+  // console.log(e.layer);
+  return e;
   // Save to db
   // Return new shape
-  // -> Update the view
 }

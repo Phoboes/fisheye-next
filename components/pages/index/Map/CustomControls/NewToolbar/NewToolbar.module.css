@@ -1,0 +1,73 @@
+.buttonWrapper {
+    border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+    background-color: white;
+    background-clip: padding-box;
+    min-width: 43px;
+    min-height: 43px;
+    padding: 0;
+    line-height: 0;
+    background-image: url('/editButton.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80%;
+}
+
+.customUtilityButton {
+    display: none;
+    width: 43px;
+    height: 43px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.newPolygon {
+    border-left: 2px solid gainsboro;
+    background-image: url('/addSite.svg');
+    background-size: 80%;
+}
+
+.newMarker {
+    background-image: url('/addMarker.svg');
+    background-size: 100%;
+}
+
+.buttonWrapper {
+    cursor: pointer;
+}
+
+.buttonWrapper:hover {
+    background-image: none;
+}
+
+.buttonWrapper:hover .customUtilityButton {
+    display: inline-block;
+}
+
+.disabled {
+    cursor: not-allowed;
+    background-color: gainsboro;
+}
+
+.editBar {
+    min-width: 300px;
+    background-color: rgba(0,0,0,0.3);
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
+    margin: auto;
+    padding: 1em;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.editBar button {
+    margin: 0.5em;
+    padding: 1em;
+    background-color: rgba(50,50,50,1);
+    text-decoration: none;
+    color: white;
+    border: none;
+    font-weight: 900;
+}
