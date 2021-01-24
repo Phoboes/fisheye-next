@@ -33,7 +33,7 @@ const Layers = (props) => {
           // key={site._id}
           featureGroup={ref}
           // featureId={featureId}
-          toolbar={toolbar}
+          // toolbar={toolbar}
           currentPolygon={props.currentPolygon}
           setCurrentPolygon={props.setCurrentPolygon}
         />

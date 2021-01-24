@@ -62,12 +62,15 @@
     transform: translateX(-50%);
 }
 
-.editBar button {
+.editBar button, .editBar span {
     margin: 0.5em;
     padding: 1em;
-    background-color: rgba(50,50,50,1);
     text-decoration: none;
     color: white;
     border: none;
     font-weight: 900;
+}
+
+.editBar button {
+    background-color: rgba(50,50,50,1);
 }
